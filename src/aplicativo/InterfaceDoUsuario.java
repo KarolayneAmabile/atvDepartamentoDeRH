@@ -1,6 +1,4 @@
 package aplicativo;
-import colaboradores.Fornecedor;
-import colaboradores.Pessoa;
 
 /*Programa Java para implementar um formulário simples de cadastro.*/
 
@@ -52,6 +50,7 @@ public class InterfaceDoUsuario extends JFrame implements ActionListener {
 	private JLabel mensagem;
 
 	//Por enquanto a pessoa virá aqui como atributo
+	Pessoa pessoa;
 
 	/*Construtor para inicializar os componentes das tela com valores padrões.*/
 	
@@ -331,43 +330,31 @@ public class InterfaceDoUsuario extends JFrame implements ActionListener {
 	{
 		if (e.getSource() == bEnviarPessoa) {
 			if (termoConcentimento.isSelected()) {
-	            String nome = tnome.getText();
-	            String celular = tNumeroCelular.getText();
-	            String endereco = tEndereco.getText();
-	            
-	            Pessoa pessoa = new Pessoa(nome, endereco, celular);
-
-                String dadosPessoa = "Nome: " + pessoa.getNome() + "\n"
-                                    + "Celular: " + pessoa.getTelefone() + "\n"
-                                    + "Endereco: " + pessoa.getEndereco();
-
-                tAOutrasInformacoes.setText(dadosPessoa); 
-                tAOutrasInformacoes.setEditable(false);
-                mensagem.setText("Registrado com Sucesso...");
+				String dadosPessoa = "Nome : "
+				        + tnome.getText() + "\n"
+				        + "Celular : "
+				        + tNumeroCelular.getText() + "\n"
+				        + "Endereco : " + tEndereco.getText();
+				tAOutrasInformacoes.setText(dadosPessoa + "\n\n"+ pessoa);
+				tAOutrasInformacoes.setEditable(false);
+				mensagem.setText("Registrado com Sucesso...");
 			}
 		}
 		if (e.getSource() == bEnviarFornecedor) {
-			String nome = tnome.getText();
-            String celular = tNumeroCelular.getText();
-            String endereco = tEndereco.getText();
-            String creditoText = tvalorCredito.getText();
-            String dividaText = tvalorDivida.getText();
-
-            float valorCredito = Float.parseFloat(creditoText);
-            float valorDivida = Float.parseFloat(dividaText);
-
-            Fornecedor fornecedor = new Fornecedor(nome, endereco, celular, valorCredito, valorDivida);
-
-            String dadosPessoa = "Nome: " + fornecedor.getNome() + "\n"
-                                + "Celular: " + fornecedor.getTelefone() + "\n"
-                                + "Endereco: " + fornecedor.getEndereco() + "\n"
-                                + "Crédito: " + fornecedor.getValorCredito() + "\n"
-                                + "Dívida: " + fornecedor.getDebitValue();
-
-            tAOutrasInformacoes.setText(dadosPessoa); 
-            tAOutrasInformacoes.setEditable(false); 
-            mensagem.setText("Fornecedor Registrado com Sucesso...");
-
+			if (termoConcentimento.isSelected()) {
+				String dadosPessoa = "Nome : "
+				        + tnome.getText() + "\n"
+				        + "Celular : "
+				        + tNumeroCelular.getText() + "\n"
+				        + "Endereco : " + tEndereco.getText() + "\n";
+				String dadosFornecedor = "Valor de crédito: "
+						+ tvalorCredito.getText()+ "\n"
+						+ "Valor de dívida: "
+						+ tvalorDivida.getText() + "\n";
+				tAOutrasInformacoes.setText(dadosPessoa + dadosFornecedor + "\n\n"+ pessoa);
+				tAOutrasInformacoes.setEditable(false);
+				mensagem.setText("Registrado com Sucesso...");
+			}
 		}
 		if (e.getSource() == bEnviarEmpregado) {
 			if (termoConcentimento.isSelected()) {
